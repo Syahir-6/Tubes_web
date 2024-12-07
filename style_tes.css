@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: cambria, sans-serif;
+    height: 100%;
+    scroll-behavior: smooth;
+    color: white;
+    background-color: #000;
+}
+.container {
+            height: 900vh; /* This makes the page scrollable */
+            position: relative;
+        }
+
+hr{
+    border:none;
+    border-top: 1px solid grey;
+    width:100%;
+    margin-top :20px;
+    transform : scaleY(0.5);
+}
+
+.frame {
+   position: sticky;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    width: 100%;
+}
+.parallax{
+	position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.judul{
+	margin-left:50px;
+	font-size:28px;
+}
+.header-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 0.9em;
+}
+
+.header-logo span {
+    color: gray;
+    font-weight: normal;
+}
+
+nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+
+.frame-1 {
+    background-color: #000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height:100vh;
+	width:100%;
+}
+
+.frame-1 .content {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('background1.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    padding-top: 120px;
+	width:95%;
+}
+
+.atas{
+    display :flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.c{
+    text-align:left;
+}
+
+.pa{
+    margin-left:50%;
+    margin-right:auto;
+    text-align:justify;
+}
+
+.2024{
+    text-align:right;
+}
+ 
+.frame-1 h1 {
+   font-size: 250px;
+   text-align:center;
+    font-weight: bold;
+    padding-bottom:50px;
+}
+
+.frame-1 p {
+	padding-bottom:50px;
+    margin-top: 30px;
+    font-size: 32px;
+}
+
+/* Frame 2: Gambar (Parallax) */
+.frame-2 .parallax {
+    background-image: url('Skin2.jpg');
+		
+}
+.frame-gambar .parallax{
+    background-image: url('model3.jpg'),url('model1.jpg'),url('model5.jpg');
+	background-position:left, center, right;
+	background-size: 33%,33%,33%;
+}
+.frame-6 .parallax{
+    background-image: url('model4.jpg');
+	background-position:top;
+}
+/* Frame 3 untuk layanan */
+.frame-3{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #333;
+    padding-top: 40px;
+    padding-bottom: 20px;
+	background-color:black;
+
+}
+.frame-3 .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.layanan-kiri {
+    flex: 1;
+    padding: 20px;
+}
+
+.layanan-kanan {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.layanan-kanan h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.layanan-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.layanan-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.layanan-item span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.layanan-item h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.layanan-info p {
+    font-size: 1em;
+    color: #aaa;
+    max-width: 600px;
+}
+
+.LIHAT-link {
+    align-self: flex-end; /* Tempatkan di kanan bawah layanan-kanan */
+    margin-top: 30px;
+}
+
+.LIHAT-link a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+	margin-right:50px
+}
+
+
+.frame-4, .frame-5, .frame-8, .frame-9 {
+	display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #333;
+    padding-top: 40px;
+    padding-bottom: 60px;
+background-color:black;
+}
+.judul {
+    flex: 1;
+    text-align: left;
+}
+
+.judul h2 {
+    font-size: 2.5em;
+    color: #fff;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.konten {
+    text-align: left;
+}
+
+.konten ul {
+    list-style: none;
+    padding: 0;
+}
+
+.konten ul li {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.konten ul li strong {
+    font-size: 1.5em;
+    color: #fff;
+    margin-right: 10px;
+}
+
+
+
+
+
+/* Frame 7: Penutup (LIHAT) */
+.frame-7 {
+  background-color: #000;
+  color: white;
+  padding: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.frame-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+
+.left-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.left-section h1 span {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.navigation ul li {
+  margin: 10px 0;
+}
+
+.navigation ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.right-section .info {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.right-section .info a {
+  color: white;
+  text-decoration: none;
+}
+
+.logo-box img {
+  width: 100px;
+  height: 100px;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact input, .contact textarea {
+  width: 300px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #111;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.contact button {
+  background-color: #111;
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+.kirim:hover {
+  background-color: white;
+  color: black;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+}

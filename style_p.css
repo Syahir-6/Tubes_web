@@ -1,0 +1,84 @@
+/* Gaya untuk body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d6E6E5;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D96666;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Gaya untuk container produk */
+.product-container {
+    padding: 20px;
+}
+
+.product-table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+.product-box {
+    background-color: #D1D171; /* Warna coklat untuk kotak */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.product-box img {
+    width: 350px;
+    height: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.product-box h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Responsif: Satu kolom produk pada layar kecil */
+@media (max-width: 768px) {
+    .product-table td {
+        width: 100%;
+        display: block;
+    }
+}
