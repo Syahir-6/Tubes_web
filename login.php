@@ -1,40 +1,13 @@
 <?php
 session_start();
-
-// Dummy data untuk username dan password
-$users = [
-    "admin" => "123456",
-    "user1" => "123",
-    "user2" => "password2"
-];
-
-// Jika pengguna sudah login, redirect ke dashboard
+// Jika pengguna sudah login, redirect ke dashboard yang sesuai
 if (isset($_SESSION['username']) || isset($_COOKIE['username'])) {
-    header("Location: beranda.php");
-    exit;
-}
-
-// Proses login
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $remember_me = isset($_POST['remember_me']);
-
-    if (array_key_exists($username, $users) && $users[$username] === $password) {
-        // Simpan username ke session
-        $_SESSION['username'] = $username;
-
-        // Simpan ke cookie jika Remember Me dicentang
-        if ($remember_me) {
-            setcookie("username", $username, time() + (86400 * 7), "/"); // Cookie 7 hari
-        }
-
-        // Redirect ke dashboard
-        header("Location: beranda.php");
-        exit;
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        header("Location: beranda_admin.php");
     } else {
-        $error_message = "Invalid username or password!";
+        header("Location: beranda.php");
     }
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -50,30 +23,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="login-form">
             <h2><span style="font-size:150px;">L</span>ogin</h2>
             <?php
-            // Tampilkan pesan error jika login gagal
-            if (isset($error_message)) {
-                echo "<p style='color: red;'>$error_message</p>";
+            if (isset($_SESSION['error_message'])) {
+                echo "<p style='color: red;'>{$_SESSION['error_message']}</p>";
+                unset($_SESSION['error_message']);
             }
             ?>
-            <form action="" method="POST">
-                <br><br><label for="username">Username:</label>
+            <form action="cek_login.php" method="POST">
+                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
-<br><br>
+                <br><br>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
-
-                 <div style="display: flex; justify-content: flex-end; align-items: right; margin-top: 10px;">
-                    <input type="checkbox" id="remember_me" name="remember_me" style="margin-right: -220px;">
-                    <label for="remember_me" style="font-size: 14px; font-weight: normal; margin-right: 50px;">Remember Me</label>
+                <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 5px;">
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                    <label for="remember_me" style="font-size: 14px;margin-top:-20px;margin-left: -180px; margin-right: 30px">Remember Me</label>
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" >Login</button>
             </form>
+			 <div style="display: flex; margin-top: 10px;">
+				<p>Belum punya akun? <a href="daftar.php" style="text-decoration: none; color:blue">Daftar</a></p>
+			</div> 
         </div>
         <div class="image-slider">
             <div class="image image1"></div>
             <div class="image image2"></div>
             <div class="image image3"></div>
+			<div class="image image4"></div>
+            <div class="image image5"></div>
         </div>
     </div>
 </body>
 </html>
+
+
