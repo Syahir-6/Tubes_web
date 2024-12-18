@@ -7,8 +7,7 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-// Nama pengguna dari sesi
-$username = $_SESSION['username'];
+
 
 if ($conn->connect_error) {
     die('Koneksi gagal: ' . $conn->connect_error);
@@ -31,17 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_user'])) {
 
 
 // Mengupdate data pengguna
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_user'])) {
-    $id = $_POST['id'];
-    $username_input = $_POST['username'];
-    $password = $_POST['password'];
-    $role = $_POST['role'];
-
-    $sql = "UPDATE users SET username='$username_input', password='$password', role='$role' WHERE id='$id'";
+// Menghapus data pengguna
+if (isset($_GET['delete'])) { // Ubah $_POST menjadi $_GET
+    $id = $_GET['delete'];
+    $sql = "DELETE FROM users WHERE id='$id'";
     if ($conn->query($sql)) {
-        echo "<script>alert('Data berhasil diperbarui');</script>";
+        echo "<script>alert('Data berhasil dihapus');</script>";
     } else {
-        echo "<script>alert('Gagal memperbarui data');</script>";
+        echo "<script>alert('Gagal menghapus data: " . $conn->error . "');</script>";
     }
 }
 
@@ -68,65 +64,7 @@ $result = $conn->query("SELECT * FROM users");
     <title>Pengguna</title>
     <link rel="stylesheet" href="style_b.css">
     <style>
-        /* Style seperti sebelumnya */
-        body {
-            font-family: Arial, sans-serif;
-        }
-       .header-center {
-            text-align: center;
-             background-color: #4a6670;
-            color: white;
-            padding: 20px 0;
-        }
-        .header-center .logo {
-            font-size: 60px;
-			margin-top: 80px;
-			margin-bottom: 30px;
-            font-weight: bold;
-        }
-        .menu-links {
-            margin-top: 10px;
-        }
-        .menu-links a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .menu-links a:hover {
-            text-decoration: none;
-            color: #FFD700;
-        }
-        .user-name {
-            position: absolute;
-            top: 40px;
-            right: 20px;
-            font-size: 18px;
-            color: white;
-            cursor: pointer;
-			
-        }
-         .user-menu {
-            display: none;
-            position: absolute;
-            top: 20px;
-            right: 0;
-            background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-        }
-        .user-menu a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-			font-size:14px;
-        }
-        .user-menu a:hover {
-            background-color: #f4f4f4;
-        }
+ 
         table {
             width: 100%;
             border-collapse: collapse;
@@ -157,6 +95,38 @@ $result = $conn->query("SELECT * FROM users");
         table .action-buttons button:hover {
             opacity: 0.8;
         }
+				/* Menempatkan tombol login di kanan atas */
+		.login-btn-container {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+
+		.login-btn {
+			padding: 10px 20px;
+			background-color: black;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		.login-btn:hover {
+			background-color: #FFD700;
+		}
+		.btn-tambah{
+			margin: 5px;
+            padding: 5px 10px;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: #4a6670;
+			margin-bottom:10px;
+			border: none;
+        }
+
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -183,30 +153,16 @@ $result = $conn->query("SELECT * FROM users");
         }
 
         // Fungsi untuk konfirmasi penghapusan data
-        function confirmDelete(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                window.location.href = 'beranda_admin.php?delete=' + id;
-            }
-        }
+       function confirmDelete(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+        window.location.href = 'beranda_admin.php?delete=' + id; // Kirim ID via query string
+    }
+}
+
     </script>
 </head>
 <body>
-    <!-- Nama user di kanan atas -->
-    <div class="user-name">Hai, <?= htmlspecialchars($username); ?>
-        <div class="user-menu">
-            <a href="logout.php">Log Out</a>
-        </div>
-    </div>
-
-    <!-- Logo di tengah -->
-    <div class="header-center">
-        <div class="logo">LioS</div>
-        <div class="menu-links">
-            <a href="beranda_admin.php">Pengguna</a>
-            <a href="komik.php">Komik</a>
-        </div>
-    </div>
-
+<?php include"header_admin.php"?>
     <!-- Form input data -->
     <form method="POST" action="beranda_admin.php" style="max-width: 800px; margin: 0 auto;">
         <table>
@@ -233,8 +189,8 @@ $result = $conn->query("SELECT * FROM users");
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center;">
-                    <button type="submit" name="add_user">Tambah Data</button>
-                    <button type="submit" name="update_user" style="display: none;">Perbarui Data</button>
+                    <button class="btn-tambah" type="submit" name="add_user">Tambah Data</button>
+                    <button class="btn-tambah" type="submit" name="update_user" style="display: none;">Perbarui Data</button>
                 </td>
             </tr>
         </table>
@@ -247,7 +203,7 @@ $result = $conn->query("SELECT * FROM users");
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
-                    <th>Password (Hashed)</th>
+                    <th>Password</th>
                     <th>Role</th>
                     <th>Aksi</th>
                 </tr>

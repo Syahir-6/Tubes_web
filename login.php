@@ -36,7 +36,7 @@ if (isset($_SESSION['username']) || isset($_COOKIE['username'])) {
                 <input type="password" id="password" name="password" required>
                 <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 5px;">
                     <input type="checkbox" id="remember_me" name="remember_me">
-                    <label for="remember_me" style="font-size: 14px;margin-top:-20px;margin-left: -180px; margin-right: 30px">Remember Me</label>
+                    <label for="remember_me" style="font-size: 14px;margin-top:-20px;margin-left: -180px; margin-right: 130px">Remember Me</label>
                 </div>
                 <button type="submit" >Login</button>
             </form>

@@ -59,9 +59,9 @@ body, html {
 	color:#ffff;
     cursor: pointer;
     margin-top: 20px;
-    margin-left: 120px;
+
     border-radius: 5px;
-    width: 300px; /* Sesuaikan lebar tombol dengan input */
+    width: 480px; /* Sesuaikan lebar tombol dengan input */
 }
 
 .login-form button:hover {
